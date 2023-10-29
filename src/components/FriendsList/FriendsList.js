@@ -1,7 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 export default function FriendsList(){
   
+  let counter
+  console.log("Friends List = ", localStorage.getItem("friend"))
+
+  
+
+  Object.keys(localStorage).forEach(function(key) {
+    console.log(localStorage.getItem(key));
+  });
+
     return (
     <div>
       <table class="table">
@@ -17,24 +26,19 @@ export default function FriendsList(){
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    {Object.keys(localStorage).map((item) => (
+      <tr>
+      <td>{JSON.parse(localStorage.getItem(item)).name}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).coutry}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).city}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).phone}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).email}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).timezone}</td>
+      <td>{JSON.parse(localStorage.getItem(item)).countryFlag}</td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    ))}
+    
+
   </tbody>
 </table>
     </div>);

@@ -34,6 +34,10 @@ export default function SaveData(name, country, city, phone, email, timezone, co
     }))
 }
 
+export function getData(){
+    
+}
+
 export function UpdateData(name, country, city, phone, email, timezone, countryFlag){
 
     console.log("Local Storage Name = ", name)

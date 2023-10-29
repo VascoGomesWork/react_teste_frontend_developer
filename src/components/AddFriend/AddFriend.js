@@ -4,7 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useCountry } from "../../hooks/useCountry";
 import { useCity } from "../../hooks/useCity";
 import { useTimezone } from "../../hooks/useTimezone";
-import SaveData from "../../service/SaveData";
+import LocalStorage from "../../service/LocalStorage";
 
 
 
@@ -43,7 +43,7 @@ export default function AddFriend() {
 
       testCounter++
       //Save data in local storage
-      SaveData(name, country, city, phone, email, timezone, countryFlag, testCounter)
+      LocalStorage(name, country, city, phone, email, timezone, countryFlag, testCounter)
     }
 
     return (
