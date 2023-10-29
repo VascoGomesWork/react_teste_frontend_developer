@@ -4,6 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useCountry } from "../../hooks/useCountry";
 import { useCity } from "../../hooks/useCity";
 import { useTimezone } from "../../hooks/useTimezone";
+import SaveData from "../../service/SaveData";
 
 
 
@@ -27,11 +28,22 @@ export default function AddFriend() {
     const [timezone, setTimezone] = useState("")
     const [countryFlag, setCountryFlag] = useState("")
 
+    let testCounter = 0
 
     function addNewFriend(){
-      console.log("Name = ", name, "\n", "Country = ", country, "\n", "City = ", city, "\n", "Phone = ", phone, "\n", "Email = ", email, "\n", "Timezone = ", timezone, "\n", "Country Flag = ", countryFlag, "\n")
+      //console.log("Name = ", name, "\n", "Country = ", country, "\n", "City = ", city, "\n", "Phone = ", phone, "\n", "Email = ", email, "\n", "Timezone = ", timezone, "\n", "Country Flag = ", countryFlag, "\n")
     
+      setName("Test Friend")
+      setCountry("United States")
+      setCity("Test City")
+      setPhone("987654321")
+      setEmail("email@teste.com")
+      setTimezone("Test/TEE")
+      setCountryFlag("America")
+
+      testCounter++
       //Save data in local storage
+      SaveData(name, country, city, phone, email, timezone, countryFlag, testCounter)
     }
 
     return (

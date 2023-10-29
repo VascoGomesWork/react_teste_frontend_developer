@@ -34,7 +34,7 @@ const GET_COUTRY_TIMEZONE = gql`
 
         //Checks if data is undefined
         console.log("TIMEZONE DATA = ", data)
-        if(data !== undefined){ 
+        /*if(data !== undefined){ 
             //Maps the cities
             data.coutries.edges.map(coutry => {
             
@@ -44,7 +44,7 @@ const GET_COUTRY_TIMEZONE = gql`
                     specificCoutryTimezoneData.push(coutry.node.timezones)
                 }
             })
-        }
+        }*/
 
         return {
             //Returns the array with the filtered cities
