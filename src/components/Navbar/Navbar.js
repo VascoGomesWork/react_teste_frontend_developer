@@ -13,7 +13,6 @@ class Navbar extends Component {
             <a class="nav-link active" aria-current="page" href="/">Friends List</a>
             <a class="nav-link" href="/addFriend">Add Friend</a>
             <a class="nav-link" href="/updateFriend">Update Friend</a>
-            <a class="nav-link" href="/deleteFriend">Delete Friend</a>
           </div>
         </div>
       </div>

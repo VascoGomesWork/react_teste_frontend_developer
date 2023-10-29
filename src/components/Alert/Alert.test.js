@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import DeleteFriend from "./DeleteFriend";
+import Alert from "./Alert";
 
-describe("DeleteFriend", () => {
+describe("Alert", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<DeleteFriend />);
+    const wrapper = shallow(<Alert />);
     expect(wrapper).toMatchSnapshot();
   });
 });

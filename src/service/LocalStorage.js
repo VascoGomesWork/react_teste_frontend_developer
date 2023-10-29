@@ -1,4 +1,6 @@
-export default function SaveData(name, country, city, phone, email, timezone, countryFlag, testCounter){
+
+
+export function SaveData(name, country, city, phone, email, timezone, countryFlag, testCounter){
 
     console.log("Local Storage Name = ", name)
     console.log("Local Storage Country = ", country)
@@ -34,8 +36,10 @@ export default function SaveData(name, country, city, phone, email, timezone, co
     }))
 }
 
-export function getData(){
-    
+export function DeleteData(friend){
+    console.log("Chegou")
+    localStorage.removeItem(friend)
+    return localStorage
 }
 
 export function UpdateData(name, country, city, phone, email, timezone, countryFlag){
@@ -60,3 +64,4 @@ export function UpdateData(name, country, city, phone, email, timezone, countryF
         countryFlag: countryFlag
     }))
 }
+
