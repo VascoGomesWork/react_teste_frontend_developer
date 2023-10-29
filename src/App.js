@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import FriendsList from './components/FriendsList/FriendsList';
+import AddFriend from './components/AddFriend/AddFriend'
+import UpdateFriend from './components/UpdateFriend/UpdateFriend'
+import DeleteFriend from './components/DeleteFriend/DeleteFriend'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <FriendsList></FriendsList>
+      <AddFriend></AddFriend>
+      <UpdateFriend></UpdateFriend>
+      <DeleteFriend></DeleteFriend>
     </div>
   );
 }
