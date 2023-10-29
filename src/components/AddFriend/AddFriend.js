@@ -2,14 +2,20 @@ import React, { useState, Component } from "react";
 
 import { gql, useQuery } from "@apollo/client";
 import { useCountry } from "../../hooks/useCountry";
+import { useCity } from "../../hooks/useCity";
+import { useTimezone } from "../../hooks/useTimezone";
 
 
 
 export default function AddFriend() {
 
-    const {error, data, loading} = useCountry()
+    const {countryError, countryData, countryLoading} = useCountry()
+    const {cityError, cityData, cityLoading} = useCity("AL")
+    const {timezoneError, timezoneData, timezoneLoading} = useTimezone("AL")
   
-    console.log({data, error, loading})
+    console.log("Country Data = ",{countryData, countryError, countryLoading})
+    console.log("City Data = ", {cityData, cityError, cityLoading})
+    console.log("Coutry Timezone Data = ", {timezoneData, timezoneError, timezoneLoading})
     //console.log(data.countries.edges[1].node.name)
     
 
@@ -29,7 +35,7 @@ export default function AddFriend() {
     }
 
     return (
-    <div className="">
+    <div className="AddFriendForm">
       {/* Nome */}
       <div className="col-md-12">
         <label for="name" class="form-label">Nome</label>
@@ -40,19 +46,25 @@ export default function AddFriend() {
       <div className="col-md-12">
         <label for="country" class="form-label">País</label>
         <select value={country} onChange={(e => setCountry(e.target.value))} id="country" class="form-select">
-          {!loading && data !== undefined && data.countries.edges.map(country => {
+          {/* Checks if there is data and if loading is false */}
+          {!countryLoading && countryData !== undefined && countryData.countries.edges.map(country => {
             return (
-              <option value={country.name}>{country.node.name}</option>
+              <option>{country.node.name}</option>
             )
           })}
         </select>
       </div>
 
-      {/* Sítio */}
+      {/* Sítio - Cidade */}
       <div className="col-md-12">
         <label for="city" class="form-label">Cidade</label>
         <select value={city} onChange={(e => setCity(e.target.value))} id="city" class="form-select">
-          <option>Disabled select</option>
+        {/* Checks if there is data and if loading is false */}
+        {!cityLoading && cityData !== undefined && cityData.map(city => {
+            return (
+              <option>{city}</option>
+            )
+          })}
         </select>
       </div>
 
@@ -64,7 +76,7 @@ export default function AddFriend() {
 
       {/* Email */}
       <div className="col-md-12">
-        <label for="email" class="form-label">Telefone</label>
+        <label for="email" class="form-label">Email</label>
         <input value={email} onChange={(e => setEmail(e.target.value))} type="text" class="form-control" id="email"/>
       </div>
 

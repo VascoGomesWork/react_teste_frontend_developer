@@ -2,16 +2,14 @@ import { gql, useQuery } from "@apollo/client";
 const GET_COUNTRIES_LIST = gql`
 {
   countries(
-    page: { first: 10}
+    page: { first: 25}
   ) {
     totalCount
     edges {
       cursor
       node {
-        id
         name
-        iso3
-        emoji
+        iso2
       }
     }
     pageInfo {
@@ -29,8 +27,8 @@ const GET_COUNTRIES_LIST = gql`
         const {data, error, loading} = useQuery(GET_COUNTRIES_LIST);
     
         return {
-            data,
-            error,
-            loading,
+            countryData: data,
+            countryError: error,
+            countryLoading: loading,
         }
     }
