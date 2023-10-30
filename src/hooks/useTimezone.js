@@ -1,13 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
+
 const GET_COUTRY_TIMEZONE = gql`
-{
-  country(iso2: "US") {
+query GetCountryTimezone($countryCode: String!){
+  country(iso2: $countryCode) {
     # Country Fields
     id
     name
     iso2
-		timezones{zone_name}
-    # ...
+	timezones{zone_name}
   }
 }
     `;

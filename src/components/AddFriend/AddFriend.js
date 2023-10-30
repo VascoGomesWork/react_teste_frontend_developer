@@ -5,6 +5,8 @@ import { useCountry } from "../../hooks/useCountry";
 import { useCountryState } from "../../hooks/useState";
 import { useTimezone } from "../../hooks/useTimezone";
 import { SaveData } from "../../service/LocalStorage";
+import { useFlag } from "../../hooks/useFlag";
+import { Alert } from "bootstrap";
 
 
 
@@ -15,12 +17,12 @@ export default function AddFriend() {
     const {countryError, countryData, countryLoading} = useCountry()
     const {stateError, stateData, stateLoading} = useCountryState(countryCode)
     const {timezoneError, timezoneData, timezoneLoading} = useTimezone(countryCode)
-    //const {countryFlagError, countryFlagData, countryFlagLoading} = useTimezone("AL")
+    const {countryFlagError, countryFlagData, countryFlagLoading} = useFlag(countryCode)
   
     console.log("Country Data = ",{countryData, countryError, countryLoading})
     console.log("City Data = ", {stateData, stateError, stateLoading})
     console.log("Coutry Timezone Data = ", {timezoneData, timezoneError, timezoneLoading})
-    //console.log(data.countries.edges[1].node.name)
+    console.log("Coutry Flag Data = ", {countryFlagData, countryFlagError, countryFlagLoading})
     
 
     const [name, setName] = useState("")
@@ -34,19 +36,11 @@ export default function AddFriend() {
     let testCounter = 0
 
     function addNewFriend(){
-      //console.log("Name = ", name, "\n", "Country = ", country, "\n", "City = ", city, "\n", "Phone = ", phone, "\n", "Email = ", email, "\n", "Timezone = ", timezone, "\n", "Country Flag = ", countryFlag, "\n")
-    
-      setName("Test Friend")
-      setCountry("United States")
-      setState("Test City")
-      setPhone("987654321")
-      setEmail("email@teste.com")
-      setTimezone("Test/TEE")
-      setCountryFlag("America")
-
       testCounter++
       //Save data in local storage
       SaveData(name, country, state, phone, email, timezone, countryFlag, testCounter)
+
+      //setTimeout(<Alert props="Friend Added Successfully"></Alert>, 2000)
     }
 
     return (
@@ -152,7 +146,12 @@ export default function AddFriend() {
         </div>
         <div className="col-md-10">
           <select value={countryFlag} onChange={(e => setCountryFlag(e.target.value))} id="countryFlag" class="form-select">
-            <option>Disabled select</option>
+            {/* Checks if there is data and if loading is false */}
+            {!countryFlagLoading && countryFlagData !== undefined && countryFlagData.data.coutry.map(flag => {
+                  return (
+                    <option>{flag.emoji}</option>
+                  )
+                })}
           </select>
           </div>
         </div>

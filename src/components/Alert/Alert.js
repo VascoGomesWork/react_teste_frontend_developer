@@ -4,7 +4,7 @@ class Alert extends Component {
   render() {
     return (
       <div class="alert alert-success" role="alert">
-        A simple success alert—check it out!
+        {this.props}
       </div>
     );
   }
