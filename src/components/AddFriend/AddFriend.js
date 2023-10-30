@@ -14,12 +14,12 @@ export default function AddFriend() {
 
     const {countryError, countryData, countryLoading} = useCountry()
     const {stateError, stateData, stateLoading} = useCountryState(countryCode)
-    const {timezoneError, timezoneData, timezoneLoading} = useTimezone("AL")
+    const {timezoneError, timezoneData, timezoneLoading} = useTimezone(countryCode)
     //const {countryFlagError, countryFlagData, countryFlagLoading} = useTimezone("AL")
   
     console.log("Country Data = ",{countryData, countryError, countryLoading})
     console.log("City Data = ", {stateData, stateError, stateLoading})
-    //console.log("Coutry Timezone Data = ", {timezoneData, timezoneError, timezoneLoading})
+    console.log("Coutry Timezone Data = ", {timezoneData, timezoneError, timezoneLoading})
     //console.log(data.countries.edges[1].node.name)
     
 
@@ -125,7 +125,7 @@ export default function AddFriend() {
         </div>
       </div>
 
-      {/* Timezone }
+      { /* Timezone */}
       <div className="col-md-12">
         <div className="row">
           <div className="col-md-2">
@@ -133,11 +133,16 @@ export default function AddFriend() {
           </div>
           <div className="col-md-10">
             <select value={timezone} onChange={(e => setTimezone(e.target.value))} id="timezone" class="form-select">
-              <option>Disabled select</option>
+              {/* Checks if there is data and if loading is false */}
+              {!timezoneLoading && timezoneData !== undefined && timezoneData.country.timezones.map(timezone => {
+                  return (
+                    <option>{timezone.zone_name}</option>
+                  )
+                })}
             </select>
           </div>
         </div>
-            </div> {*/}
+            </div>
 
       {/* Country Flag */}
       <div className="col-md-12">
