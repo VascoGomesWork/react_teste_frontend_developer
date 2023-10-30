@@ -145,14 +145,10 @@ export default function AddFriend() {
           <label for="countryFlag" class="form-label">Country Flag</label>
         </div>
         <div className="col-md-10">
-          <select value={countryFlag} onChange={(e => setCountryFlag(e.target.value))} id="countryFlag" class="form-select">
+          
             {/* Checks if there is data and if loading is false */}
-            {!countryFlagLoading && countryFlagData !== undefined && countryFlagData.data.coutry.map(flag => {
-                  return (
-                    <option>{flag.emoji}</option>
-                  )
-                })}
-          </select>
+            {!countryFlagLoading && countryFlagData !== undefined && countryFlagData.country !== null && 
+              <p value={countryFlag} onChange={(e => setCountryFlag(e.target.value))}>{countryFlagData.country.emoji}</p>}
           </div>
         </div>
       </div>
